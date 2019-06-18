@@ -172,6 +172,25 @@ class TestWebsocket(DaphneTestCase):
             )
             self.assert_valid_websocket_connect_message(messages[0])
 
+    def test_raw_path(self):
+        """
+        Tests that /foo%2fbar produces raw_path and a decoded path
+        """
+        with DaphneTestingInstance() as test_app:
+            test_app.add_send_messages([{"type": "websocket.accept"}])
+            self.websocket_handshake(
+                test_app,
+                path="/foo%2fbar",
+            )
+            # Validate the scope and messages we got
+            scope, _ = test_app.get_received()
+
+        scope, _ = self.run_daphne_request(
+            "GET", "/foo%2fbar"
+        )
+        self.assertEqual(scope["path"], "/foo/bar")
+        self.assertEqual(scope["raw_path"], b"/foo%2fbar")
+
     def test_text_frames(self):
         """
         Tests we can send and receive text frames.

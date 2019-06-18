@@ -134,6 +134,16 @@ class TestHTTPRequest(DaphneTestCase):
         self.assert_valid_http_scope(scope, "POST", request_path)
         self.assert_valid_http_request_message(messages[0], body=request_body)
 
+    def test_raw_path(self):
+        """
+        Tests that /foo%2fbar produces raw_path and a decoded path
+        """
+        scope, _ = self.run_daphne_request(
+            "GET", "/foo%2fbar"
+        )
+        self.assertEqual(scope["path"], "/foo/bar")
+        self.assertEqual(scope["raw_path"], b"/foo%2fbar")
+
     @given(request_headers=http_strategies.headers())
     @settings(max_examples=5, deadline=5000)
     def test_headers(self, request_headers):
