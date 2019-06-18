@@ -41,7 +41,8 @@ class TestHTTPRequest(DaphneTestCase):
         self.assertIsInstance(scope["method"], str)
         self.assertEqual(scope["method"], method.upper())
         # Path
-        self.assert_valid_path(scope["path"], path)
+        self.assertIsInstance(path, str)
+        self.assertEqual(scope["path"], path)
         # HTTP version
         self.assertIn(scope["http_version"], ["1.0", "1.1", "1.2"])
         # Scheme

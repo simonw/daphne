@@ -31,7 +31,8 @@ class TestWebsocket(DaphneTestCase):
         # Check that it is the right type
         self.assertEqual(scope["type"], "websocket")
         # Path
-        self.assert_valid_path(scope["path"], path)
+        self.assertIsInstance(path, str)
+        self.assertEqual(scope["path"], path)
         # Scheme
         self.assertIn(scope.get("scheme", "ws"), ["ws", "wss"])
         if scheme:

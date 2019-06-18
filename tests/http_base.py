@@ -243,15 +243,6 @@ class DaphneTestCase(unittest.TestCase):
         # Assert that no other keys are present
         self.assertEqual(set(), present_keys - required_keys - optional_keys)
 
-    def assert_valid_path(self, path, request_path):
-        """
-        Checks the path is valid and already url-decoded.
-        """
-        self.assertIsInstance(path, str)
-        self.assertEqual(path, request_path)
-        # Assert that it's already url decoded
-        self.assertEqual(path, parse.unquote(path))
-
     def assert_valid_address_and_port(self, host):
         """
         Asserts the value is a valid (host, port) tuple.
