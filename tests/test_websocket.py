@@ -182,7 +182,6 @@ class TestWebsocket(DaphneTestCase):
             # Validate the scope and messages we got
             scope, _ = test_app.get_received()
 
-        scope, _ = self.run_daphne_request("GET", "/foo%2Fbar")
         self.assertEqual(scope["path"], "/foo/bar")
         self.assertEqual(scope["raw_path"], b"/foo%2Fbar")
 
