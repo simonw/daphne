@@ -24,7 +24,7 @@ class TestWebsocket(DaphneTestCase):
         """
         # Check overall keys
         self.assert_key_sets(
-            required_keys={"type", "path", "query_string", "headers"},
+            required_keys={"type", "path", "raw_path", "query_string", "headers"},
             optional_keys={"scheme", "root_path", "client", "server", "subprotocols"},
             actual_keys=scope.keys(),
         )

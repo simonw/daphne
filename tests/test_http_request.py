@@ -28,6 +28,7 @@ class TestHTTPRequest(DaphneTestCase):
                 "http_version",
                 "method",
                 "path",
+                "raw_path",
                 "query_string",
                 "headers",
             },
