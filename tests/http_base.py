@@ -107,7 +107,7 @@ class DaphneTestCase(unittest.TestCase):
             body=body,
             headers=headers,
             xff=xff,
-            raw_path=True,
+            raw_path=raw_path,
             responses=[
                 {"type": "http.response.start", "status": 200},
                 {"type": "http.response.body", "body": b"OK"},
