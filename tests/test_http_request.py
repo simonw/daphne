@@ -138,9 +138,7 @@ class TestHTTPRequest(DaphneTestCase):
         """
         Tests that /foo%2fbar produces raw_path and a decoded path
         """
-        scope, _ = self.run_daphne_request(
-            "GET", "/foo%2fbar"
-        )
+        scope, _ = self.run_daphne_request("GET", "/foo%2fbar")
         self.assertEqual(scope["path"], "/foo/bar")
         self.assertEqual(scope["raw_path"], b"/foo%2fbar")
 
