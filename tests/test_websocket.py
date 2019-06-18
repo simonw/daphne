@@ -161,7 +161,7 @@ class TestWebsocket(DaphneTestCase):
             test_app.add_send_messages([{"type": "websocket.accept"}])
             self.websocket_handshake(
                 test_app,
-                path=request_path,
+                path=parse.quote(request_path),
                 params=request_params,
                 headers=request_headers,
             )

@@ -146,8 +146,6 @@ class DaphneTestCase(unittest.TestCase):
         # Send it the request. We have to do this the long way to allow
         # duplicate headers.
         conn = HTTPConnection(test_app.host, test_app.port, timeout=timeout)
-        # Make sure path is urlquoted and add any params
-        path = parse.quote(path)
         if params:
             path += "?" + parse.urlencode(params, doseq=True)
         conn.putrequest("GET", path, skip_accept_encoding=True, skip_host=True)
